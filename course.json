@@ -1779,6 +1779,10 @@
             "MAD - AAEP": {
                 "title": "MAD - AAEP",
                 "color": "PURPLE"
+            },
+            "Intro.à la microéconomie": {
+                "title": "Intro.à la microéconomie",
+                "color": "CYAN"
             }
         }
     },

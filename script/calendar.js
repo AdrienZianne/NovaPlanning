@@ -1,43 +1,22 @@
+
 !async function(){
     fetch_events().then((events_fetch)=> {
         let events = []
         
+        
         for (let [key,value] of Object.entries(localStorage) ){
-            /*if(value !== ""){
-                localStorage.removeItem(key);
-            }*/
-            console.log(events_fetch);
-            let spliced = key.split('_');
-            let temp = spliced[0];
-            let course = spliced[1];
-            if(!course) continue;
-            let option = temp.split('$')[0];
-            let cursus = temp.split('$')[1];
-            let colorCustom = null;
-            if (localStorage.getItem(key) !== "") {
-                colorCustom = value;
-            }
-            console.log(key)
-            console.log(option + '///' + course + '///' + cursus)
-            
-            //automatic suppresion of oudated events in storage, after modifying data storage methode
-            //some people were unable to open the planning because outdated event path was stored
-            //this remove this cookies but it allow them to reconnect to the website
-            console.log(checkRemoveData(key, events_fetch[option]));
-            console.log(checkRemoveData(key, events_fetch[option][cursus]));
-            console.log(checkRemoveData(key, events_fetch[option][cursus][course]));
-            if (checkRemoveData(key, events_fetch[option])) continue;
-            if (checkRemoveData(key, events_fetch[option][cursus])) continue;
-            if (checkRemoveData(key, events_fetch[option][cursus][course])) continue;
 
-            // If the key in the local storage begin with only BAB1,BAB2,BAB3 or MASTER
-            // Then it's an old key when there was only INFO, so we can just add INFO in front of the cursus
-            // if(["BAB1","BAB2","BAB3","MASTER"].includes(cursus)){
-            //     localStorage.removeItem(key)
-            //     localStorage.setItem(cursus+" INFO_"+course,"")
-            //     cursus = cursus+" INFO"
-            // }
-            let course_events = events_fetch[option][cursus][course];
+            let spliced = value.split('%');
+            let course = key;
+            // if(!course) continue;
+            let cursus = spliced[0].split("$")[0];
+            let year = spliced[0].split("$")[1];
+            let colorCustom = null;
+            // if (localStorage.getItem(key) !== "") {
+            //     colorCustom = value;
+            // }   
+
+            let course_events = events_fetch[cursus][year][course];
             course_events.forEach((event)=>{
                 let date = new Date(event.start)
                 let start = [date.getFullYear(), date.getMonth()+1, date.getDate(), date.getHours(),date.getMinutes()]
@@ -46,8 +25,10 @@
                 let title = event.title
                 if (colorCustom !== null) {
                     event.color = colorCustom;
+                    
                 }
-                let color = event.color;
+
+                event.textColor = (isLight(event.color)?"black":"white");
 
                 let ics_event = {
                     title,
@@ -64,25 +45,41 @@
 
     }).catch(error => {
         console.error(error);
+        // localStorage.clear();
     });
-
 
 }();
 
-function checkRemoveData(key, cond) {
-    if (!cond) {
-        console.log(key)
-        localStorage.removeItem(key);
-        return true;
+function isLight(color) {
+    if (color.length == 7) {
+      const rgb = [
+        parseInt(color.substring(1, 3), 16),
+        parseInt(color.substring(3, 5), 16),
+        parseInt(color.substring(5), 16),
+      ];
+      const luminance =
+        (0.2126 * rgb[0]) / 255 +
+        (0.7152 * rgb[1]) / 255 +
+        (0.0722 * rgb[2]) / 255;
+      return luminance > 0.5;
     }
     return false;
-}
+  }
 
 function calendar(events) {
+    var scrollTime = moment().subtract(moment.duration("01:00:00")).format("HH:mm:ss");
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
+        height: '100vh',
         locale: 'fr',
-        initialView: 'timeGridWeek',
+        initialView: (window.matchMedia('screen and (max-width: 1000px)').matches)?'timeGridThreeDay':'timeGridWeek',
+        views: {
+            timeGridThreeDay: {
+                type: 'timeGrid',
+                duration: { days: 3 }
+            }
+        },
+        scrollTime: scrollTime,
         slotMinTime:"08:00:00",
         slotMaxTime:"21:00:00",
         slotEventOverlap:false,
@@ -95,9 +92,8 @@ function calendar(events) {
         displayEventEnd: true,
         events: events,
         eventDisplay: 'block',
-        height: 'auto',
         titleFormat: {
-            month: 'long',
+            month: 'short',
             year: 'numeric'
         },
         customButtons: {
@@ -113,11 +109,16 @@ function calendar(events) {
                 text: 'ICS',
                 click: () => download_ics(),
             },
+            threeday: {
+                theme: 'true',
+                text: '3days',
+                click: () => calendar.changeView('timeGridThreeDay'),
+            },
         },
         headerToolbar: {
             start: 'select ics',
             center: 'title',
-            end: 'today prev,next timeGridWeek,dayGridMonth',
+            end: (window.matchMedia('screen and (max-width: 1000px)').matches)?'today prev,next threeday,dayGridMonth':'today prev,next timeGridWeek,dayGridMonth',
         },
         fixedWeekCount: false,
         eventDidMount: function(info) {
@@ -130,6 +131,27 @@ function calendar(events) {
           });
         },
     });
-    
+
     calendar.render();
+
+    let widthMatch = window.matchMedia('screen and (max-width: 1000px)');
+    // mm in the function arg is the matchMedia object, passed back into the function
+    widthMatch.addEventListener('change', function(mm) {
+
+        if (mm.matches) {
+            // it matches the media query: that is, min-width is >= 500px
+            calendar.setOption('headerToolbar', {
+                start: 'select ics',
+                center: 'title',
+                end: 'today prev,next threeday,dayGridMonth',
+            })
+        }
+        else {
+            calendar.setOption('headerToolbar', {
+                start: 'select ics',
+                center: 'title',
+                end: 'today prev,next timeGridWeek,dayGridMonth',
+            })
+        }
+    });
 }

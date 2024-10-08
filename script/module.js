@@ -25,7 +25,6 @@ window.download_list = () => {
 
 window.upload_list = () => {
     let file = document.getElementById("myFile").files[0];
-    console.log(file)
     if (file && file.size > 0){
         readFileContent(file).then(content => {
             let courses = JSON.parse(content)
@@ -33,7 +32,6 @@ window.upload_list = () => {
             for (let course in courses){
                 localStorage.setItem(course,courses[course])
             }
-            console.log(courses)
             location.reload()
         }).catch(error => console.log(error))
     }

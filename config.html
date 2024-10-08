@@ -15,12 +15,16 @@
         <button onclick="upload_list()">Upload</button>
         <input type="file" id="myFile">
         <div class="scrollBar">
-          <button id="scrlbtn" onclick="onClickScrollBarRoll()" class="scrollbtn">--select a cursus--</button>
-          <div id="sbl-course" class="scrollbarlist">
-          </div>
+            <button id="scrlbtn" onclick="onClickScrollBarRoll()" class="scrollbtn">--select a cursus--</button>
+            <button onclick="clear_all_data()">Clear all selections</button>
+            <div id="search_container" style="display: none;">
+                <div id="course_search_text" style="display: inline-block;">Search a course :</div>
+                <input type="search" onkeyup="search()" id="course_search" style="display: inline-block;">
+            </div>
+            <div id="sbl-course" class="scrollbarlist" style="display: none;">
+            </div>
         </div>
 
-        <div id="cursus-content">
-        </div>
+        <div id="cursus-content"></div>
     </body>
 </html>

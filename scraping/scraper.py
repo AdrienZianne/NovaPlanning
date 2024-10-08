@@ -21,6 +21,11 @@ with open('course.json') as json_file:
 with open('year_dict.json') as json_file:
     year_dict = json.load(json_file)
 
+with open('filter.json') as json_file:
+    filter = json.load(json_file)
+
+print(type(filter), filter)
+
 WAITING_TIME = 5
 output = {}
 list_names = []
@@ -79,14 +84,6 @@ def move_down(driver,n,begin_enter=False):
     WebDriverWait(driver, 10).until(EC.staleness_of)
 
 
-temp_filter = [
-    "Sc. informatiques",
-    "Sc. chimiques",
-    "Sc. physiques",
-    "Sc. biomédicales",
-    "Sc. pharmaceutiques"
-    ]
-
 def get_information(driver):
 
     cursus_id = driver.find_element(By.XPATH,'//div[@id="GInterface.Instances[1].Instances[1].bouton_Edit"]').text
@@ -112,7 +109,7 @@ def get_information(driver):
     specialisation = res.group(3)
     site = res.group(4)
 
-    if cursus not in temp_filter: return
+    if filter and cursus not in filter: return
 
     print(f"Cursus : {cursus}\nYear : {year}\nSpecialisation : {specialisation}\nSite : {site}")
 
@@ -194,6 +191,8 @@ url = "https://hplanning2024.umons.ac.be/invite"
 driver.get(url)
 driver.refresh()
 end = True
+
+start = time.time()
 for i in range(248):
 
     success = False
@@ -216,7 +215,7 @@ for i in range(248):
 
             success = True
 
-            print(f"{int(i/248*100)}% [{int(i/248*20) * '#' + int(20 - i/248*20) * ' '}]")
+            print(f"{int(i/248*100)}% [{int(i/248*20) * '#' + int(20 - i/248*20) * ' '}] {int((time.time()-start)//60)}min {int((time.time()-start)%60)}s")
 
             driver.refresh()
         except Exception as e:
