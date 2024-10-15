@@ -11660,6 +11660,10 @@
             "SourcEnAltern": {
                 "title": "SourcEnAltern",
                 "color": "CYAN"
+            },
+            "Environnement, procédés indu": {
+                "title": "Environnement, procédés indu",
+                "color": "GREY"
             }
         }
     },
