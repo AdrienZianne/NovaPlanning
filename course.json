@@ -2905,6 +2905,10 @@
             "Sem. méthod. Sc. math B": {
                 "title": "Sem. méthod. Sc. math B",
                 "color": "BLUE"
+            },
+            "Réservation de salles": {
+                "title": "Réservation de salles",
+                "color": "BLUE"
             }
         }
     },
@@ -17111,6 +17115,10 @@
             "Vie scolaire gestion groupes": {
                 "title": "Vie scolaire gestion groupes",
                 "color": "ORANGE"
+            },
+            "Réservation de salles": {
+                "title": "Réservation de salles",
+                "color": "GREY"
             }
         }
     },
