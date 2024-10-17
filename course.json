@@ -709,6 +709,10 @@
             "Etude fil rouge: partie 1": {
                 "title": "Etude fil rouge: partie 1",
                 "color": "ORANGE"
+            },
+            "Remédiation disciplinaire en C": {
+                "title": "Remédiation disciplinaire en C",
+                "color": "GREY"
             }
         }
     },
@@ -2336,6 +2340,10 @@
             "Réunion": {
                 "title": "Réunion",
                 "color": "RED"
+            },
+            "Remédiation disciplinaire en C": {
+                "title": "Remédiation disciplinaire en C",
+                "color": "GREEN"
             }
         }
     },
@@ -5967,6 +5975,10 @@
             "Simulation et démarche cliniqu": {
                 "title": "Simulation et démarche cliniqu",
                 "color": "GREY"
+            },
+            "Remédiation disciplinaire en C": {
+                "title": "Remédiation disciplinaire en C",
+                "color": "RED"
             }
         }
     },
