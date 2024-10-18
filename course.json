@@ -1298,6 +1298,10 @@
             "Sém. méthodo spéc chimie": {
                 "title": "Sém. méthodo spéc chimie",
                 "color": "GREEN"
+            },
+            "Sém. méthodo. spéc. biologie": {
+                "title": "Sém. méthodo. spéc. biologie",
+                "color": "GREEN"
             }
         }
     },
@@ -11351,6 +11355,10 @@
             "QualSécEnv": {
                 "title": "QualSécEnv",
                 "color": "GREY"
+            },
+            "Sém. Méthod spéc. en chim": {
+                "title": "Sém. Méthod spéc. en chim",
+                "color": "PURPLE"
             }
         }
     },
@@ -11679,6 +11687,10 @@
             },
             "Environnement, procédés indu": {
                 "title": "Environnement, procédés indu",
+                "color": "GREY"
+            },
+            "Sém. Méthod spéc. en chim": {
+                "title": "Sém. Méthod spéc. en chim",
                 "color": "GREY"
             }
         }
@@ -17058,6 +17070,10 @@
             "Vie scolaire gestion groupes": {
                 "title": "Vie scolaire gestion groupes",
                 "color": "YELLOW"
+            },
+            "Sém. méthodo. spéc. biologie": {
+                "title": "Sém. méthodo. spéc. biologie",
+                "color": "GREEN"
             }
         }
     },
