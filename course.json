@@ -10462,6 +10462,10 @@
             "TE RUSS": {
                 "title": "TE RUSS",
                 "color": "GREY"
+            },
+            "Maitrise langue franç univ Q1": {
+                "title": "Maitrise langue franç univ Q1",
+                "color": "GREY"
             }
         }
     },
@@ -16835,6 +16839,10 @@
             "Vie scolaire gestion groupes": {
                 "title": "Vie scolaire gestion groupes",
                 "color": "GREY"
+            },
+            "Didactique disciplinaire": {
+                "title": "Didactique disciplinaire",
+                "color": "RED"
             }
         }
     },
