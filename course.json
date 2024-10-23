@@ -14566,6 +14566,10 @@
             "Elaboration supports péda": {
                 "title": "Elaboration supports péda",
                 "color": "RED"
+            },
+            "Qu act en form de formateurs": {
+                "title": "Qu act en form de formateurs",
+                "color": "PURPLE"
             }
         }
     },
@@ -16574,6 +16578,10 @@
             "Vie scolaire gestion groupes": {
                 "title": "Vie scolaire gestion groupes",
                 "color": "ORANGE"
+            },
+            "Qu act en form de formateurs": {
+                "title": "Qu act en form de formateurs",
+                "color": "RED"
             }
         }
     },
