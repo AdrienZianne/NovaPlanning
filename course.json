@@ -16924,6 +16924,10 @@
             "Vie scolaire gestion groupes": {
                 "title": "Vie scolaire gestion groupes",
                 "color": "GREEN"
+            },
+            "CC Methodo FLE": {
+                "title": "CC Methodo FLE",
+                "color": "YELLOW"
             }
         }
     },
